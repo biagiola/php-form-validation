@@ -1,4 +1,5 @@
 <?php 
+  // in $_POST we have the values of the username input and email input
   if(isset($_POST['submit'])){
     // validate entries
     echo 'form submitted';
