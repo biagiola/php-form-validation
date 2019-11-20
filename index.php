@@ -1,8 +1,16 @@
 <?php 
+
+require('user_validator.php');
+
   // in $_POST we have the values of the username input and email input
   if(isset($_POST['submit'])){
     // validate entries
-    echo 'form submitted';
+    $validation = new UserValidator($_POST);
+    $erros = $validation->validateForm();
+    
+    // save data to db
+    
+    
   }
 ?>
 
@@ -19,9 +27,15 @@
 
       <label>username: </label>
       <input type="text" name="username">
+      <div class="error">
+        <?php echo $erros['username'] ?? '' ?>
+      </div>
 
       <label>email: </label>
       <input type="text" name="email">
+      <div class="error">
+        <?php echo $erros['email'] ?? '' ?>
+      </div>
 
       <input type="submit" value="submit" name="submit">
 
