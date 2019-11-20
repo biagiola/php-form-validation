@@ -20,19 +20,39 @@
                 // but if it exist then we validate
                 $this->validateUsername();
                 $this->validateEmail();
+                return $this->erros
             }
         }
 
         private function validateUsername() {
-
+            // eliminate the white spaces
+            $val = trim($this->data['username');
+            
+            if( empty($val) ) { 
+                $this->addError('username', 'username cannot be empty');
+            } else {
+                if(preg_match('/^[a-aA-Z0-9]{6,12}$/', $val)) {
+                    $this->addError('username', 'username must 6-12 chars $ alphanumeric')
+                }
+            }                           
         }
 
         private function validateEmail() {
-
+            $val = trim($this->data['username');
+                                    
+            if( empty($val) ) { 
+                $this->addError('email', 'email cannot be empty');
+            } else {
+                // an built-in email validator 
+                if( !filter_var($val, FILTER_VALIDATE_EMAIL) )) {
+                    $this->addError('email', 'email must be a valid email')
+                }
+            }     
         }
-
-        private function addError() {
-
+                                    
+        // the key is the username and the value is the message
+        private function addError( $key, $val ) {
+            $this->errors[$key] = $val;
         }
 
     }
