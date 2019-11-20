@@ -25,7 +25,7 @@ require('user_validator.php');
     <h2>Create a new user</h2>
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
-      <label>username: </label>
+      <label>username: </label>/* htmlspecialchars: when we enter a wrong value it doesnt desapear */
       <input type="text" name="username" value="<?php echo htmlspecialchars($_POST['username']) ?? '' ?>" >
       <div class="error">
         <?php echo $erros['username'] ?? '' ?>
