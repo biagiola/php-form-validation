@@ -26,13 +26,13 @@ require('user_validator.php');
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
       <label>username: </label>
-      <input type="text" name="username">
+      <input type="text" name="username" value="<?php echo htmlspecialchars($_POST['username']) ?? '' ?>" >
       <div class="error">
         <?php echo $erros['username'] ?? '' ?>
       </div>
 
       <label>email: </label>
-      <input type="text" name="email">
+      <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email']) ?? '' ?>">
       <div class="error">
         <?php echo $erros['email'] ?? '' ?>
       </div>
